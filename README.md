@@ -1,6 +1,8 @@
 dptrp1-tools
 ============
 
+[![ShellCheck](https://github.com/MasWag/dptrp1-tools/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/MasWag/dptrp1-tools/actions/workflows/shellcheck.yml)
+
 A collection of utility scripts for managing PDF files on Sony DPT-RP1 digital paper devices. Notice that the scripts are dedicated for my personal use.
 
 Overview

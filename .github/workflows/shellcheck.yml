@@ -1,0 +1,25 @@
+name: ShellCheck
+
+on:
+  push:
+    branches:
+      - '**'  # This will run on pushes to any branch
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  shellcheck:
+    name: Shellcheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install ShellCheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+      
+      - name: Run ShellCheck
+        run: |
+          shellcheck bin/* 
