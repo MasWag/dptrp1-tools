@@ -1,0 +1,36 @@
+#!/bin/bash -ue
+################################################################################
+# Name
+#  download_thesis
+# Description
+#  This is a script to download a thesis PDF from dptrp1. By default,
+#  the PDF file is downloaded to /tmp/
+# Usage
+#  download_thesis [DIR]
+# Requirements
+#  This script requires the following commands in addition to the
+#  standard POSIX commands.
+#
+#  * bash (https://www.gnu.org/software/bash/)
+#  * dptrp1 (https://github.com/janten/dpt-rp1-py)
+#  * peco (https://github.com/peco/peco)
+#
+# Author
+#  Masaki Waga
+# License
+#  MIT License
+# Note
+#  This script can be converted to a document with pandoc with scrdoc
+#  (https://github.com/MasWag/scrdoc).
+#
+#  Example: pandoc -f ./scrdoc.lua -i download_thesis -t markdown -o
+#  download_thesis.md
+################################################################################
+
+dptrp1 list-documents |
+    grep Thesis2024AY |
+    grep -v Done |
+    peco |
+    while read -r doc; do
+        dptrp1 download "$doc" "${1:-/tmp/}"
+    done
