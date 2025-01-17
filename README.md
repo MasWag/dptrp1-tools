@@ -22,6 +22,21 @@ The scripts require the following tools to be installed:
 Scripts
 -------
 
+### dptrp1_upload
+
+Uploads PDF files to the DPT-RP1 device.
+
+**Usage:**
+```bash
+dptrp1_upload FILE...
+```
+- `FILE...`: One or more PDF files to upload
+
+The script will:
+1. List all folders on the device
+2. Show an interactive selection interface for choosing the target directory
+3. Upload each specified file to the selected directory
+
 ### dptrp1_download
 
 Downloads PDF files from the DPT-RP1 device.

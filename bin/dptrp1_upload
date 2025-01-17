@@ -1,0 +1,40 @@
+#!/bin/bash -ue
+################################################################################
+# Name
+#  dptrp1_upload
+# Description
+#  This is a script to upload PDF files to dptrp1. The target directory is
+#  selected interactively using peco.
+# Usage
+#  dptrp1_upload FILE...
+# Requirements
+#  This script requires the following commands in addition to the
+#  standard POSIX commands.
+#
+#  * bash (https://www.gnu.org/software/bash/)
+#  * dptrp1 (https://github.com/janten/dpt-rp1-py)
+#  * peco (https://github.com/peco/peco)
+#
+# Author
+#  Masaki Waga
+# License
+#  MIT License
+################################################################################
+
+# Check if at least one file is provided
+if [[ $# -eq 0 ]]; then
+    echo "Usage: $0 FILE..." >&2
+    exit 1
+fi
+
+# Select target directory using peco
+target_dir=$(dptrp1 list-folders -q | peco)
+
+# Upload each file to the selected directory
+for file in "$@"; do
+    if [[ ! -f "$file" ]]; then
+        echo "Error: File '$file' does not exist." >&2
+        continue
+    fi
+    dptrp1 upload "$file" "$target_dir"
+done 
