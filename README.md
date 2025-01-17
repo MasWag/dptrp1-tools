@@ -22,6 +22,21 @@ The scripts require the following tools to be installed:
 Scripts
 -------
 
+### dptrp1_download
+
+Downloads PDF files from the DPT-RP1 device.
+
+**Usage:**
+```bash
+dptrp1_download [DIR]
+```
+- `DIR` (optional): Target directory for downloaded files. Defaults to `/tmp/`
+
+The script will:
+1. List all documents on the device
+2. Show an interactive selection interface
+3. Download the selected document to the specified directory
+
 ### download_thesis
 
 Downloads thesis PDFs from the DPT-RP1 device.

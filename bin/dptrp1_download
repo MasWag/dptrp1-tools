@@ -1,0 +1,28 @@
+#!/bin/bash -ue
+################################################################################
+# Name
+#  dptrp1_download
+# Description
+#  This is a script to download PDF files from dptrp1. By default,
+#  the PDF file is downloaded to /tmp/
+# Usage
+#  dptrp1_download [DIR]
+# Requirements
+#  This script requires the following commands in addition to the
+#  standard POSIX commands.
+#
+#  * bash (https://www.gnu.org/software/bash/)
+#  * dptrp1 (https://github.com/janten/dpt-rp1-py)
+#  * peco (https://github.com/peco/peco)
+#
+# Author
+#  Masaki Waga
+# License
+#  MIT License
+################################################################################
+
+dptrp1 list-documents -q |
+    peco |
+    while read -r doc; do
+        dptrp1 download "$doc" "${1:-/tmp/}"
+    done 
