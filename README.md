@@ -22,6 +22,21 @@ The scripts require the following tools to be installed:
 Scripts
 -------
 
+### dptrp1_rm
+
+Removes files from the DPT-RP1 device.
+
+**Usage:**
+```bash
+dptrp1_rm
+```
+
+The script will:
+1. List all documents on the device
+2. Show an interactive multi-selection interface for choosing files to remove
+3. Show selected files and ask for confirmation
+4. Remove all selected files after confirmation
+
 ### dptrp1_move
 
 Moves files between directories on the DPT-RP1 device.

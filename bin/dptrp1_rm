@@ -1,0 +1,44 @@
+#!/bin/bash -ue
+################################################################################
+# Name
+#  dptrp1_rm
+# Description
+#  This is a script to remove files from dptrp1. Files are selected
+#  interactively using peco.
+# Usage
+#  dptrp1_rm
+# Requirements
+#  This script requires the following commands in addition to the
+#  standard POSIX commands.
+#
+#  * bash (https://www.gnu.org/software/bash/)
+#  * dptrp1 (https://github.com/janten/dpt-rp1-py)
+#  * peco (https://github.com/peco/peco)
+#
+# Author
+#  Masaki Waga
+# License
+#  MIT License
+################################################################################
+
+# Select files to remove using peco
+files=$(dptrp1 list-documents -q | peco )
+
+if [ -z "$files" ]; then
+    echo "No files selected." >&2
+    exit 1
+fi
+
+# Ask for confirmation
+echo "The following files will be removed:"
+echo "$files"
+read -p "Are you sure? [y/N] " -r
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo "Operation cancelled." >&2
+    exit 1
+fi
+
+# Remove each selected file
+echo "$files" | while read -r file; do
+    dptrp1 delete "$file"
+done 
