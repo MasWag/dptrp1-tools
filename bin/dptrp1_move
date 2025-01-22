@@ -1,0 +1,43 @@
+#!/bin/bash -ue
+################################################################################
+# Name
+#  dptrp1_move
+# Description
+#  This is a script to move files on dptrp1. The target directory is
+#  selected interactively using peco.
+# Usage
+#  dptrp1_move
+# Requirements
+#  This script requires the following commands in addition to the
+#  standard POSIX commands.
+#
+#  * bash (https://www.gnu.org/software/bash/)
+#  * dptrp1 (https://github.com/janten/dpt-rp1-py)
+#  * peco (https://github.com/peco/peco)
+#
+# Author
+#  Masaki Waga
+# License
+#  MIT License
+################################################################################
+
+# Select files to move using peco
+files=$(dptrp1 list-documents -q | peco)
+
+if [ -z "$files" ]; then
+    echo "No files selected." >&2
+    exit 1
+fi
+
+# Select target directory using peco
+target_dir=$(dptrp1 list-folders -q | peco)
+
+if [ -z "$target_dir" ]; then
+    echo "No target directory selected." >&2
+    exit 1
+fi
+
+# Move each selected file to the target directory
+echo "$files" | while read -r file; do
+    dptrp1 move-document "$file" "$target_dir"
+done 

@@ -22,6 +22,22 @@ The scripts require the following tools to be installed:
 Scripts
 -------
 
+### dptrp1_move
+
+Moves files between directories on the DPT-RP1 device.
+
+**Usage:**
+```bash
+dptrp1_move
+```
+
+The script will:
+1. List all documents on the device
+2. Show an interactive multi-selection interface for choosing files to move
+3. List all folders on the device
+4. Show an interactive selection interface for choosing the target directory
+5. Move all selected files to the target directory
+
 ### dptrp1_upload
 
 Uploads PDF files to the DPT-RP1 device.
