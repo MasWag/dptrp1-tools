@@ -37,4 +37,4 @@ for file in "$@"; do
         continue
     fi
     dptrp1 upload "$file" "$target_dir"
-done 
+done
